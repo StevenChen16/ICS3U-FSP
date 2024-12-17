@@ -3,7 +3,7 @@ public class FSP {
 	public static void main(String[]args) {
 
 		//Run the GUI - Main Menu Screen
-		new MainMenuScreen();
+		new MainMenuScreen().showScreen();
 		
 	}
 	
