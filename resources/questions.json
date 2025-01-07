@@ -1,0 +1,304 @@
+{
+  "questions": [
+    {
+      "id": 1,
+      "type": "multiple_choice",
+      "category": "basic_arrays",
+      "questionText": "In F1 race analysis, we store 5 lap times in array lapTimes[]. What is correct way to access last lap time?",
+      "options": [
+        "lapTimes[5]",
+        "lapTimes[4]",
+        "lapTimes[-1]",
+        "lapTimes.last()"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Array index starts from 0, so for array of size 5, last index is 4",
+      "difficulty": "easy"
+    },
+    {
+      "id": 2,
+      "type": "multiple_choice",
+      "category": "array_initialization",
+      "questionText": "How would you correctly initialize an array to store lap times for 3 drivers with a pre-defined set of times?",
+      "options": [
+        "double[] lapTimes = new double(3);",
+        "double[] lapTimes = {82.5, 81.8, 81.9};",
+        "double lapTimes[] = new double[3];",
+        "double[] lapTimes = double[3];"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Using {} allows direct initialization with specific values. Other methods either have syntax errors or create an empty array.",
+      "difficulty": "easy"
+    },
+    {
+      "id": 3,
+      "type": "multiple_choice",
+      "category": "array_length",
+      "questionText": "If raceTimes is a 2D array representing lap times for multiple drivers, how do you find the number of drivers?",
+      "options": [
+        "raceTimes.size()",
+        "raceTimes.length()",
+        "raceTimes.length",
+        "count(raceTimes)"
+      ],
+      "correctAnswer": 2,
+      "explanation": "For 2D arrays, .length gives the number of rows (drivers in this case)",
+      "difficulty": "medium"
+    },
+    {
+      "id": 4,
+      "type": "multiple_choice",
+      "category": "array_access",
+      "questionText": "Given double[][] raceTimes, how would you access Verstappen's third lap time if he's the second driver (index 1)?",
+      "options": [
+        "raceTimes[1, 2]",
+        "raceTimes[1][2]",
+        "raceTimes{1}{2}",
+        "raceTimes(1)(2)"
+      ],
+      "correctAnswer": 1,
+      "explanation": "In 2D arrays, use [row][column] to access specific elements",
+      "difficulty": "medium"
+    },
+    {
+      "id": 5,
+      "type": "multiple_choice",
+      "category": "array_operations",
+      "questionText": "To find the fastest lap time in an array, what's the initial value you'd compare against?",
+      "options": [
+        "0",
+        "Integer.MAX_VALUE",
+        "lapTimes[0]",
+        "Double.POSITIVE_INFINITY"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Start with the first array element to compare against other lap times",
+      "difficulty": "medium"
+    },
+    {
+      "id": 6,
+      "type": "multiple_choice",
+      "category": "array_initialization",
+      "questionText": "What happens if you try to access raceTimes[3][0] when raceTimes is a 3x4 array?",
+      "options": [
+        "Returns 0",
+        "Returns null",
+        "Causes an ArrayIndexOutOfBoundsException",
+        "Adds a new row automatically"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Accessing an index beyond the array's size will throw an ArrayIndexOutOfBoundsException",
+      "difficulty": "hard"
+    },
+    {
+      "id": 7,
+      "type": "multiple_choice",
+      "category": "array_traversal",
+      "questionText": "Which loop is best for iterating through all elements in a 2D array representing race times?",
+      "options": [
+        "while loop",
+        "do-while loop",
+        "enhanced for loop (for-each)",
+        "switch loop"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Enhanced for loop (for-each) provides a clean way to iterate through nested arrays",
+      "difficulty": "hard"
+    },
+    {
+      "id": 8,
+      "type": "multiple_choice",
+      "category": "array_operations",
+      "questionText": "To calculate average lap time for a driver, what steps are needed?",
+      "options": [
+        "Use Math.average() method",
+        "Sum all lap times and divide by array length",
+        "Take middle value of sorted array",
+        "Add first and last lap times"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Calculate total by summing all lap times, then divide by the number of laps (array length)",
+      "difficulty": "medium"
+    },
+    {
+      "id": 9,
+      "type": "multiple_choice",
+      "category": "array_initialization",
+      "questionText": "What will happen when you create: double[] lapTimes = new double[5];?",
+      "options": [
+        "All values are null",
+        "All values are 0.0",
+        "Compilation error",
+        "All values are random"
+      ],
+      "correctAnswer": 1,
+      "explanation": "For numeric arrays like double, elements are automatically initialized to 0.0",
+      "difficulty": "easy"
+    },
+    {
+      "id": 10,
+      "type": "multiple_choice",
+      "category": "array_access",
+      "questionText": "How can you find the total number of lap times in a 2D array raceTimes with 3 drivers?",
+      "options": [
+        "raceTimes.length * raceTimes[0].length",
+        "raceTimes.length + raceTimes[0].length",
+        "raceTimes[0].length",
+        "raceTimes.length"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Multiply number of rows (drivers) by number of columns (laps per driver) to get total lap times",
+      "difficulty": "hard"
+    },
+    {
+      "id": 11,
+      "type": "multiple_choice",
+      "category": "array_reference",
+      "questionText": "If double[] times1 = {81.5, 82.3, 81.9}; and double[] times2 = times1; What happens to times2 when times1[0] changes?",
+      "options": [
+        "times2 remains unchanged",
+        "times2 also changes",
+        "Compilation error occurs",
+        "A copy of times1 is created"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Arrays are reference types. Assigning one array to another creates a reference, not a copy.",
+      "difficulty": "medium"
+    },
+    {
+      "id": 12,
+      "type": "multiple_choice",
+      "category": "array_methods",
+      "questionText": "Which method would you use to create a copy of an entire array in Java?",
+      "options": [
+        "array.clone()",
+        "Arrays.copyOf(array, array.length)",
+        "array.copy()",
+        "new array(array)"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Arrays.copyOf() creates a new array with the same elements as the original",
+      "difficulty": "medium"
+    },
+    {
+      "id": 13,
+      "type": "multiple_choice",
+      "category": "array_initialization",
+      "questionText": "What will be the result of: int[] positions = new int[5];?",
+      "options": [
+        "Compilation error",
+        "Array filled with null",
+        "Array filled with zeros",
+        "Random integer values"
+      ],
+      "correctAnswer": 2,
+      "explanation": "For primitive numeric arrays, elements are automatically initialized to 0",
+      "difficulty": "easy"
+    },
+    {
+      "id": 14,
+      "type": "multiple_choice",
+      "category": "array_operations",
+      "questionText": "To find the driver with the fastest average lap time in a 2D array, what approach is most efficient?",
+      "options": [
+        "Use nested for loops to calculate each driver's average",
+        "Sort the array first, then calculate averages",
+        "Use Stream API to process averages",
+        "Calculate manually for each driver"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Nested for loops provide the most straightforward and memory-efficient way to calculate averages",
+      "difficulty": "hard"
+    },
+    {
+      "id": 15,
+      "type": "multiple_choice",
+      "category": "array_access",
+      "questionText": "What happens when you try to access an index outside an array's bounds?",
+      "options": [
+        "Returns null",
+        "Automatically expands the array",
+        "Throws ArrayIndexOutOfBoundsException",
+        "Returns the last element"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Accessing an index beyond the array's length causes an ArrayIndexOutOfBoundsException",
+      "difficulty": "medium"
+    },
+    {
+      "id": 16,
+      "type": "multiple_choice",
+      "category": "array_manipulation",
+      "questionText": "Which method efficiently removes an element from an array in Java?",
+      "options": [
+        "Use array.remove() method",
+        "Create a new array excluding the element",
+        "Set the element to null",
+        "Use Collections.removeElement()"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Arrays have fixed size in Java. To 'remove' an element, you must create a new array without that element",
+      "difficulty": "hard"
+    },
+    {
+      "id": 17,
+      "type": "multiple_choice",
+      "category": "array_initialization",
+      "questionText": "How would you create a 2D array representing lap times for 3 drivers with 4 laps each?",
+      "options": [
+        "double[][] raceTimes = new double[3, 4];",
+        "double[][] raceTimes = new double[3][4];",
+        "double[] raceTimes = new double[3][4];",
+        "double raceTimes[][] = new double[4][3];"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Use [rows][columns] syntax to create a 2D array with specified dimensions",
+      "difficulty": "easy"
+    },
+    {
+      "id": 18,
+      "type": "multiple_choice",
+      "category": "array_traversal",
+      "questionText": "What's the most memory-efficient way to print all lap times in a 2D array?",
+      "options": [
+        "Use ArrayList and forEach",
+        "Use nested for loops",
+        "Use Stream API",
+        "Use while loops"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Nested for loops provide direct, memory-efficient access to all array elements",
+      "difficulty": "medium"
+    },
+    {
+      "id": 19,
+      "type": "multiple_choice",
+      "category": "array_operations",
+      "questionText": "To find the lap with the most consistent times across all drivers, what statistical measure would you use?",
+      "options": [
+        "Mean",
+        "Median",
+        "Standard Deviation",
+        "Mode"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Standard deviation measures the spread of lap times, indicating consistency",
+      "difficulty": "hard"
+    },
+    {
+      "id": 20,
+      "type": "multiple_choice",
+      "category": "array_reference",
+      "questionText": "What happens if you pass an array to a method and modify it inside the method?",
+      "options": [
+        "The original array remains unchanged",
+        "The original array is modified",
+        "A compilation error occurs",
+        "The method cannot access array elements"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Arrays are passed by reference. Modifications inside a method affect the original array",
+      "difficulty": "medium"
+    }
+  ]
+}

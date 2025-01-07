@@ -49,10 +49,6 @@ Design quiz questions with real-world F1 scenarios:
 
 ---
 
-Certainly! Below is an enhanced version of the additional features with a focus on both reinforcing the understanding of arrays and integrating the F1 theme more deeply.
-
----
-
 ### **Enhanced Additional Features**
 1. **Dynamic Array Resizing with Pit Stop Strategy**  
    - **Concept:** Teach dynamic array resizing by simulating real-time pit stops during a race. As new pit stop durations are recorded, the array dynamically expands to accommodate the data.  

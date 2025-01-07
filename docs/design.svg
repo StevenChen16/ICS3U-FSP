@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+    <!-- Title -->
+    <text x="400" y="40" text-anchor="middle" font-size="20" font-weight="bold">F1 Array Racing Class Hierarchy</text>
+    
+    <!-- FSP Main Class -->
+    <rect x="350" y="60" width="100" height="40" fill="#4CAF50" stroke="black"/>
+    <text x="400" y="85" text-anchor="middle" font-size="14">FSP</text>
+    
+    <!-- MainMenuScreen -->
+    <rect x="325" y="150" width="150" height="40" fill="#2196F3" stroke="black"/>
+    <text x="400" y="175" text-anchor="middle" font-size="14">MainMenuScreen</text>
+    
+    <!-- ConceptsScreen -->
+    <rect x="100" y="250" width="150" height="40" fill="#FFC107" stroke="black"/>
+    <text x="175" y="275" text-anchor="middle" font-size="14">ConceptsScreen</text>
+    
+    <!-- ActivityScreen -->
+    <rect x="325" y="250" width="150" height="40" fill="#FF5722" stroke="black"/>
+    <text x="400" y="275" text-anchor="middle" font-size="14">ActivityScreen</text>
+    
+    <!-- AssessmentScreen -->
+    <rect x="550" y="250" width="150" height="40" fill="#9C27B0" stroke="black"/>
+    <text x="625" y="275" text-anchor="middle" font-size="14">AssessmentScreen</text>
+    
+    <!-- QuestionLoader -->
+    <rect x="550" y="350" width="150" height="40" fill="#E91E63" stroke="black"/>
+    <text x="625" y="375" text-anchor="middle" font-size="14">QuestionLoader</text>
+
+    <!-- Question Class -->
+    <rect x="550" y="450" width="150" height="40" fill="#795548" stroke="black"/>
+    <text x="625" y="475" text-anchor="middle" font-size="14">Question</text>
+    
+    <!-- Connections -->
+    <line x1="400" y1="100" x2="400" y2="150" stroke="black" marker-end="url(#arrowhead)"/>
+    <line x1="400" y1="190" x2="175" y2="250" stroke="black" marker-end="url(#arrowhead)"/>
+    <line x1="400" y1="190" x2="400" y2="250" stroke="black" marker-end="url(#arrowhead)"/>
+    <line x1="400" y1="190" x2="625" y2="250" stroke="black" marker-end="url(#arrowhead)"/>
+    <line x1="625" y1="290" x2="625" y2="350" stroke="black" marker-end="url(#arrowhead)"/>
+    <line x1="625" y1="390" x2="625" y2="450" stroke="black" marker-end="url(#arrowhead)"/>
+    
+    <!-- Arrow marker definition -->
+    <defs>
+        <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" fill="black"/>
+        </marker>
+    </defs>
+    
+    <!-- Notes -->
+    <g transform="translate(50,500)">
+        <text x="0" y="0" font-size="12">Notes:</text>
+        <text x="0" y="20" font-size="12">- All Screen classes extend JFrame</text>
+        <text x="0" y="40" font-size="12">- Colors represent different module types</text>
+    </g>
+</svg>
