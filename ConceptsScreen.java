@@ -27,7 +27,7 @@ public class ConceptsScreen extends JFrame {
     
     private void createComponents() {
         try {
-            final Image backgroundImage = ImageIO.read(getClass().getResource("./resources/background1.jpg"));
+            final Image backgroundImage = ImageIO.read(getClass().getResource("./resources/background2.jpg"));
             setContentPane(new JPanel() {
                 @Override
                 protected void paintComponent(Graphics g) {
