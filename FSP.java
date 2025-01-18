@@ -6,5 +6,4 @@ public class FSP {
 		new MainMenuScreen();
 		
 	}
-	
 }

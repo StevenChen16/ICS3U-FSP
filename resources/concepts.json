@@ -1,0 +1,229 @@
+{
+    "sections": [
+      {
+        "title": "Basic Arrays",
+        "description": "Learn about one-dimensional arrays through F1 racing examples. We'll start with the basics and gradually move to more complex operations.",
+        "examples": [
+          {
+            "title": "Creating and Initializing Arrays",
+            "description": "Let's learn how to create arrays to store lap times in different ways.",
+            "codeBlocks": [
+              {
+                "fileName": "LapTimeTracker.java",
+                "code": "// Method 1: Create array with size
+  double[] lapTimes = new double[5];  // Creates array that can store 5 lap times
+  
+  // Method 2: Create and initialize with values
+  double[] qualifyingTimes = {82.5, 81.8, 81.9, 81.7, 82.0};  // 5 lap times
+  
+  // Method 3: Create array and fill later
+  double[] raceTimes;           // Declare array
+  raceTimes = new double[10];   // Create array with size
+  raceTimes[0] = 83.2;         // Fill first lap time",
+                "explanation": "Arrays in Java can be created in several ways:\n\n1. Create with size: Use when you know how many elements you need but don't have the values yet.\n\n2. Create with values: Use when you already have all the values.\n\n3. Split declaration and creation: Useful when you need to create the array based on some condition.\n\nIn F1 racing, we often use arrays to store lap times, sector times, or speed measurements."
+              }
+            ],
+            "tooltips": {
+              "new double[5]": "Creates an array that can hold 5 double values, initialized to 0.0",
+              "{82.5, 81.8, 81.9, 81.7, 82.0}": "Array initializer - creates and fills array in one step",
+              "raceTimes[0] = 83.2": "Assigns value 83.2 to first element of array (index 0)"
+            }
+          },
+          {
+            "title": "Accessing and Modifying Array Elements",
+            "description": "Learn how to work with individual lap times in an array.",
+            "codeBlocks": [
+              {
+                "fileName": "RaceAnalysis.java",
+                "code": "// Store qualifying lap times
+  double[] lapTimes = {82.5, 81.8, 81.9, 81.7, 82.0};
+  
+  // Access individual lap times
+  double fastestLap = lapTimes[3];     // Get 4th lap (index 3): 81.7
+  double firstLap = lapTimes[0];       // Get 1st lap (index 0): 82.5
+  
+  // Modify lap times
+  lapTimes[0] = 82.3;                  // Update first lap time
+  lapTimes[4] = lapTimes[3];           // Copy 4th lap time to 5th position
+  
+  // Calculate time difference between laps
+  double improvement = lapTimes[0] - lapTimes[1];  // Time difference between first two laps",
+                "explanation": "Array indices start at 0 in Java. This means:\n- First element is at index 0\n- Last element is at index (length-1)\n\nYou can:\n- Read values using array[index]\n- Modify values using array[index] = newValue\n- Use array elements in calculations\n\nCommon mistakes to avoid:\n- Accessing index -1 (too low)\n- Accessing index equal to array length (too high)"
+              }
+            ],
+            "tooltips": {
+              "lapTimes[3]": "Access element at index 3 (4th element)",
+              "lapTimes[0] = 82.3": "Modify element at index 0 (1st element)"
+            }
+          },
+          {
+            "title": "Array Iteration",
+            "description": "Different ways to loop through lap times array.",
+            "codeBlocks": [
+              {
+                "fileName": "LapAnalyzer.java",
+                "code": "double[] lapTimes = {82.5, 81.8, 81.9, 81.7, 82.0};
+  
+  // Method 1: for loop with index
+  System.out.println(\"Lap times using regular for loop:\");
+  for (int i = 0; i < lapTimes.length; i++) {
+      System.out.println(\"Lap \" + (i + 1) + \": \" + lapTimes[i]);
+  }
+  
+  // Method 2: enhanced for loop (for-each)
+  System.out.println(\"\\nLap times using enhanced for loop:\");
+  int lapNumber = 1;
+  for (double time : lapTimes) {
+      System.out.println(\"Lap \" + lapNumber + \": \" + time);
+      lapNumber++;
+  }
+  
+  // Method 3: iterate in reverse order
+  System.out.println(\"\\nLap times in reverse order:\");
+  for (int i = lapTimes.length - 1; i >= 0; i--) {
+      System.out.println(\"Lap \" + (i + 1) + \": \" + lapTimes[i]);
+  }",
+                "explanation": "There are several ways to iterate through an array:\n\n1. Regular for loop:\n   - Gives you access to the index\n   - More flexible (can go backwards, skip elements)\n   - Good when you need the lap number\n\n2. Enhanced for loop:\n   - Cleaner syntax\n   - Less error-prone\n   - Best when you just need the values\n\n3. Reverse iteration:\n   - Useful for analyzing laps from end to start\n   - Shows how flexible the regular for loop is"
+              }
+            ],
+            "tooltips": {
+              "lapTimes.length": "Gets the number of elements in the array",
+              "for (double time : lapTimes)": "Enhanced for loop syntax - reads as 'for each time in lapTimes'"
+            }
+          }
+        ]
+      },
+      {
+        "title": "2D Arrays",
+        "description": "Learn about two-dimensional arrays using F1 racing data. Perfect for storing race data for multiple drivers or multiple races.",
+        "examples": [
+          {
+            "title": "Creating and Initializing 2D Arrays",
+            "description": "Learn how to create and initialize 2D arrays to store race data for multiple drivers.",
+            "codeBlocks": [
+              {
+                "fileName": "RaceDataManager.java",
+                "code": "// Method 1: Create 2D array with sizes
+  // 3 drivers, 4 laps each
+  double[][] raceData = new double[3][4];
+  
+  // Method 2: Create and initialize with values
+  double[][] qualifyingTimes = {
+      {82.5, 81.8, 81.9, 81.7},  // Hamilton's times
+      {82.3, 81.6, 81.5, 81.8},  // Verstappen's times
+      {82.8, 82.0, 81.9, 81.9}   // Leclerc's times
+  };
+  
+  // Method 3: Initialize row by row
+  double[][] raceTimes = new double[3][];  // Create array for 3 drivers
+  raceTimes[0] = new double[4];            // First driver's 4 laps
+  raceTimes[1] = new double[4];            // Second driver's 4 laps
+  raceTimes[2] = new double[4];            // Third driver's 4 laps",
+                "explanation": "2D arrays are like a grid or table:\n- First index [i] represents the row (driver)\n- Second index [j] represents the column (lap)\n\nYou can create 2D arrays in several ways:\n1. Specify both dimensions at once\n2. Initialize with nested arrays\n3. Create row arrays separately (useful for varying lengths)\n\nIn F1, 2D arrays are perfect for storing:\n- Multiple drivers' lap times\n- Sector times for multiple laps\n- Speed data for multiple race segments"
+              }
+            ],
+            "tooltips": {
+              "new double[3][4]": "Creates a 2D array with 3 rows and 4 columns",
+              "raceTimes[0] = new double[4]": "Creates an array of 4 elements for the first driver"
+            }
+          },
+          {
+            "title": "Accessing and Modifying 2D Arrays",
+            "description": "Learn how to work with individual elements in a 2D array of race data.",
+            "codeBlocks": [
+              {
+                "fileName": "RaceAnalysis.java",
+                "code": "double[][] qualifyingTimes = {
+      {82.5, 81.8, 81.9, 81.7},  // Driver 0
+      {82.3, 81.6, 81.5, 81.8},  // Driver 1
+      {82.8, 82.0, 81.9, 81.9}   // Driver 2
+  };
+  
+  // Access individual times
+  double hamiltonFirstLap = qualifyingTimes[0][0];    // First driver, first lap
+  double verstappenBestLap = qualifyingTimes[1][2];   // Second driver, third lap
+  
+  // Modify times
+  qualifyingTimes[2][3] = 81.7;   // Update last lap for third driver
+  
+  // Compare drivers
+  double timeDiff = qualifyingTimes[0][1] - qualifyingTimes[1][1];  // Lap 2 difference
+  
+  // Find dimensions
+  int numberOfDrivers = qualifyingTimes.length;          // Number of rows
+  int lapsPerDriver = qualifyingTimes[0].length;         // Number of columns",
+                "explanation": "In a 2D array:\n- First index [i] selects the driver (row)\n- Second index [j] selects the lap (column)\n\nCommon operations:\n1. Accessing elements: array[row][column]\n2. Modifying elements: array[row][column] = value\n3. Getting dimensions:\n   - array.length gives number of rows\n   - array[0].length gives number of columns\n\nThis structure makes it easy to:\n- Compare drivers' performances\n- Analyze specific laps\n- Track improvements throughout qualifying"
+              }
+            ],
+            "tooltips": {
+              "qualifyingTimes[0][0]": "Accesses first driver's first lap time",
+              "qualifyingTimes.length": "Gets number of drivers (rows)",
+              "qualifyingTimes[0].length": "Gets number of laps (columns) for first driver"
+            }
+          },
+          {
+            "title": "Complex 2D Array Operations",
+            "description": "Advanced operations with 2D arrays in racing context.",
+            "codeBlocks": [
+              {
+                "fileName": "RaceStatistics.java",
+                "code": "public class RaceStatistics {
+      // Analyze qualifying performance
+      public static void analyzeQualifying(double[][] times) {
+          // Calculate average lap time for each driver
+          for (int driver = 0; driver < times.length; driver++) {
+              double totalTime = 0;
+              for (int lap = 0; lap < times[driver].length; lap++) {
+                  totalTime += times[driver][lap];
+              }
+              double averageTime = totalTime / times[driver].length;
+              System.out.printf(\"Driver %d average: %.3f\\n\", driver, averageTime);
+          }
+          
+          // Find best lap time overall
+          double bestTime = times[0][0];
+          int bestDriver = 0;
+          int bestLap = 0;
+          
+          for (int i = 0; i < times.length; i++) {
+              for (int j = 0; j < times[i].length; j++) {
+                  if (times[i][j] < bestTime) {
+                      bestTime = times[i][j];
+                      bestDriver = i;
+                      bestLap = j;
+                  }
+              }
+          }
+          
+          System.out.printf(\"Best time: %.3f (Driver %d, Lap %d)\\n\", 
+                           bestTime, bestDriver, bestLap);
+      }
+      
+      // Calculate sector time differences between drivers
+      public static double[][] calculateTimeDiffs(double[][] driver1Sectors, 
+                                                double[][] driver2Sectors) {
+          double[][] differences = new double[driver1Sectors.length][driver1Sectors[0].length];
+          
+          for (int lap = 0; lap < driver1Sectors.length; lap++) {
+              for (int sector = 0; sector < driver1Sectors[lap].length; sector++) {
+                  differences[lap][sector] = 
+                      driver1Sectors[lap][sector] - driver2Sectors[lap][sector];
+              }
+          }
+          
+          return differences;
+      }
+  }",
+                "explanation": "This example shows advanced 2D array operations:\n\n1. Nested Iteration:\n   - Outer loop: iterate through drivers\n   - Inner loop: iterate through laps\n   - Used for calculating averages and finding best times\n\n2. Array Comparison:\n   - Compare sector times between drivers\n   - Create new 2D array to store differences\n\n3. Complex Analysis:\n   - Calculate averages per driver\n   - Find best overall performance\n   - Track sector-by-sector differences\n\nThese operations are common in race analysis for:\n- Comparing driver performances\n- Finding areas for improvement\n- Analyzing race strategies"
+              }
+            ],
+            "tooltips": {
+              "times.length": "Number of drivers",
+              "times[driver].length": "Number of laps for current driver",
+              "calculateTimeDiffs": "Method to compare two drivers' sector times"
+            }
+          }
+        ]
+      }
+    ]
+  }
