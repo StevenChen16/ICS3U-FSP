@@ -23,29 +23,29 @@ public class CodePanel extends JPanel {
         setLayout(new GridLayout(1, 2, 10, 0));
         setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         
-        // 初始化面板
+        // Initialize code and explanation panels
         codePanel = new JPanel();
         explanationPanel = new JPanel();
         explanationLabels = new ArrayList<>();
         
-        // 设置布局
+        // Set layouts
         codePanel.setLayout(new BoxLayout(codePanel, BoxLayout.Y_AXIS));
         explanationPanel.setLayout(new BoxLayout(explanationPanel, BoxLayout.Y_AXIS));
         
-        // 添加边距
+        // Add padding
         codePanel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
         explanationPanel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
         
-        // 创建滚动面板
+        // Create scroll panes
         JScrollPane codeScroll = new JScrollPane(codePanel);
         JScrollPane explanationScroll = new JScrollPane(explanationPanel);
         
-        // 同步滚动
+        // Syncronize vertical scrolling
         codeScroll.getVerticalScrollBar().setModel(
             explanationScroll.getVerticalScrollBar().getModel()
         );
         
-        // 设置滚动策略
+        // Set scroll bar policies
         codeScroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         explanationScroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         
@@ -66,12 +66,12 @@ public class CodePanel extends JPanel {
             label.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
             add(label, BorderLayout.WEST);
             
-            // 设置固定高度
+            // Set line height
             setPreferredSize(new Dimension(Integer.MAX_VALUE, LINE_HEIGHT));
             setMaximumSize(new Dimension(Integer.MAX_VALUE, LINE_HEIGHT));
             setMinimumSize(new Dimension(10, LINE_HEIGHT));
             
-            // 添加悬停效果
+            // Add hover effect
             addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseEntered(MouseEvent e) {
@@ -87,62 +87,62 @@ public class CodePanel extends JPanel {
     }
     
     private void addCodeLine(String code, String explanation, int colorIndex) {
-        // 创建代码行面板
+        // Create code line panel
         LinePanel codeLine = new LinePanel(code, LINE_COLORS[colorIndex % LINE_COLORS.length]);
         
-        // 创建解释面板
+        // Create explanation label
         JLabel explanationLabel = new JLabel(" ");
         explanationLabel.setFont(new Font("Arial", Font.PLAIN, 14));
         LinePanel explanationLine = new LinePanel("", LINE_COLORS[colorIndex % LINE_COLORS.length]);
         explanationLine.add(explanationLabel);
         
-        // 存储解释标签
+        // Store explanation label
         explanationLabels.add(explanationLabel);
         
-        // 添加点击监听器
+        // Add click listener to show explanation
         int currentIndex = explanationLabels.size() - 1;
         codeLine.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                // 清除所有解释
+                // Clear previous explanations
                 for (JLabel label : explanationLabels) {
                     label.setText(" ");
                 }
-                // 显示当前行的解释
+                // Display current explanation
                 explanationLabel.setText(explanation);
             }
         });
         
-        // 添加到面板
+        // Create line separators
         codePanel.add(codeLine);
         explanationPanel.add(explanationLine);
         
-        // 添加行间距
+        // Add spacing
         codePanel.add(Box.createRigidArea(new Dimension(0, 1)));
         explanationPanel.add(Box.createRigidArea(new Dimension(0, 1)));
     }
     
     public void setContent(CodeBlock codeBlock, Map<String, String> tooltips) {
-        // 清空现有内容
+        // Clear previous content
         codePanel.removeAll();
         explanationPanel.removeAll();
         explanationLabels.clear();
         
-        // 分割代码成行
+        // Split code and explanation into lines
         String[] codeLines = codeBlock.getCode().split("\n");
         String[] explanationLines = codeBlock.getExplanation().split("\n");
         
-        // 添加文件名
+        // Add file name
         addCodeLine("// File: " + codeBlock.getFileName(), "", 0);
-        addCodeLine("", "", 0);  // 空行
+        addCodeLine("", "", 0);  // Empty line
         
-        // 添加代码行
+        // Add code lines with explanations
         for (int i = 0; i < codeLines.length; i++) {
             String explanation = i < explanationLines.length ? explanationLines[i] : "";
             addCodeLine(codeLines[i], explanation, i % LINE_COLORS.length);
         }
         
-        // 刷新UI
+        // Refresh panel
         revalidate();
         repaint();
     }

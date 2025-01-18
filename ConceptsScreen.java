@@ -1,9 +1,11 @@
 import java.awt.*;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
-// ConceptsScreen.java
+// This class is responsible for displaying the concepts screen
 public class ConceptsScreen extends JFrame {
     private static final int FRAME_WIDTH = 1600;
     private static final int FRAME_HEIGHT = 900;
@@ -41,122 +43,148 @@ public class ConceptsScreen extends JFrame {
             e.printStackTrace();
         }
         
-        // 创建主面板
         mainPanel = new JPanel(new BorderLayout());
         mainPanel.setOpaque(false);
         
-        // 创建标签页面板
+        // Create top panel for back button
+        JPanel topPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 20, 10));
+        topPanel.setOpaque(false);
+        
+        // Create styled back button
+        JButton backButton = createStyledButton("Back to Main Menu");
+        backButton.addActionListener(e -> returnToMainMenu());
+        topPanel.add(backButton);
+        
+        // Create and setup tabbedPane
         tabbedPane = new JTabbedPane();
         tabbedPane.setFont(new Font("Arial", Font.BOLD, 14));
-        
         createTabs();
         
-        // 创建返回按钮
-        JButton backButton = new JButton("Back to Main Menu");
-        backButton.addActionListener(e -> returnToMainMenu());
-        backButton.setBackground(new Color(220, 0, 0));
-        backButton.setForeground(Color.WHITE);
-        
-        // 创建一个用于包含tabbedPane的面板
         JPanel contentPanel = new JPanel(new BorderLayout());
         contentPanel.setOpaque(false);
         contentPanel.add(tabbedPane, BorderLayout.CENTER);
         
-        // 创建滚动面板
         JScrollPane scrollPane = new JScrollPane(contentPanel);
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        scrollPane.getVerticalScrollBar().setUnitIncrement(16); // 增加滚动速度
+        scrollPane.getVerticalScrollBar().setUnitIncrement(16);
         scrollPane.setOpaque(false);
         scrollPane.getViewport().setOpaque(false);
         
-        // 添加组件到主面板
+        // Add components to main panel
+        mainPanel.add(topPanel, BorderLayout.NORTH);
         mainPanel.add(scrollPane, BorderLayout.CENTER);
-        mainPanel.add(backButton, BorderLayout.SOUTH);
     }
+    
+    // Create styled button method (similar to MainMenuScreen style)
+    private JButton createStyledButton(String text) {
+        JButton button = new JButton(text);
+        button.setPreferredSize(new Dimension(200, 40));
+        button.setFont(new Font("Arial", Font.BOLD, 14));
+        button.setBackground(new Color(220, 0, 0)); // F1 red color
+        button.setForeground(Color.WHITE);
+        button.setFocusPainted(false);
+        button.setBorderPainted(false);
+        return button;
+    }
+    
     
     private void createTabs() {
-    for (Section section : loader.getSections()) {
-        // 创建主面板，使用BoxLayout
-        JPanel sectionPanel = new JPanel();
-        sectionPanel.setLayout(new BoxLayout(sectionPanel, BoxLayout.Y_AXIS));
-        sectionPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
-        
-        // 创建标题Panel
-        JPanel titlePanel = new JPanel();
-        titlePanel.setLayout(new BoxLayout(titlePanel, BoxLayout.Y_AXIS));
-        titlePanel.setAlignmentX(Component.CENTER_ALIGNMENT);
-        
-        // 设置主标题
-        JLabel titleLabel = new JLabel(section.getTitle());
-        titleLabel.setFont(new Font("Arial", Font.BOLD, 24));
-        titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-        titlePanel.add(titleLabel);
-        titlePanel.add(Box.createVerticalStrut(10));
-        
-        // 设置描述文本
-        JLabel descLabel = new JLabel("<html><div style='text-align: center;'>" + 
-                                    section.getDescription() + "</div></html>");
-        descLabel.setFont(new Font("Arial", Font.PLAIN, 14));
-        descLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-        titlePanel.add(descLabel);
-        
-        sectionPanel.add(titlePanel);
-        
-        // 处理每个示例
-        for (CodeExample example : section.getExamples()) {
-            sectionPanel.add(Box.createVerticalStrut(30));
+        for (Section section : loader.getSections()) {
+            JPanel sectionPanel = new JPanel();
+            sectionPanel.setLayout(new BoxLayout(sectionPanel, BoxLayout.Y_AXIS));
+            sectionPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+            sectionPanel.setOpaque(false);
             
-            // 示例标题面板
-            JPanel exampleTitlePanel = new JPanel();
-            exampleTitlePanel.setLayout(new BoxLayout(exampleTitlePanel, BoxLayout.Y_AXIS));
-            exampleTitlePanel.setAlignmentX(Component.CENTER_ALIGNMENT);
+            // Create title panel
+            JPanel titlePanel = new JPanel();
+            titlePanel.setLayout(new BoxLayout(titlePanel, BoxLayout.Y_AXIS));
+            titlePanel.setAlignmentX(Component.CENTER_ALIGNMENT);
+            titlePanel.setOpaque(false);
             
-            // 示例标题
-            JLabel exampleTitle = new JLabel(example.getTitle());
-            exampleTitle.setFont(new Font("Arial", Font.BOLD, 20));
-            exampleTitle.setAlignmentX(Component.CENTER_ALIGNMENT);
-            exampleTitlePanel.add(exampleTitle);
-            exampleTitlePanel.add(Box.createVerticalStrut(5));
+            JLabel titleLabel = new JLabel(section.getTitle());
+            titleLabel.setFont(new Font("Arial", Font.BOLD, 24));
+            titleLabel.setForeground(Color.WHITE);
+            titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+            titlePanel.add(titleLabel);
+            titlePanel.add(Box.createVerticalStrut(10));
             
-            // 示例描述
-            JLabel exampleDesc = new JLabel("<html><div style='text-align: center;'>" + 
-                                          example.getDescription() + "</div></html>");
-            exampleDesc.setFont(new Font("Arial", Font.PLAIN, 14));
-            exampleDesc.setAlignmentX(Component.CENTER_ALIGNMENT);
-            exampleTitlePanel.add(exampleDesc);
+            JLabel descLabel = new JLabel("<html><div style='text-align: center;'>" + 
+                                        section.getDescription() + "</div></html>");
+            descLabel.setFont(new Font("Arial", Font.PLAIN, 14));
+            descLabel.setForeground(Color.WHITE);
+            descLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+            titlePanel.add(descLabel);
             
-            sectionPanel.add(exampleTitlePanel);
+            sectionPanel.add(titlePanel);
             
-            // 添加代码面板
-            for (CodeBlock codeBlock : example.getCodeBlocks()) {
-                sectionPanel.add(Box.createVerticalStrut(10));
-                CodePanel codePanel = new CodePanel();
-                codePanel.setContent(codeBlock, example.getTooltips());
-                codePanel.setMaximumSize(new Dimension(FRAME_WIDTH - 100, 400));
-                sectionPanel.add(codePanel);
+            // Handle each example
+            for (CodeExample example : section.getExamples()) {
+                sectionPanel.add(Box.createVerticalStrut(30));
+                
+                JPanel exampleTitlePanel = new JPanel();
+                exampleTitlePanel.setLayout(new BoxLayout(exampleTitlePanel, BoxLayout.Y_AXIS));
+                exampleTitlePanel.setAlignmentX(Component.CENTER_ALIGNMENT);
+                exampleTitlePanel.setOpaque(false);
+                
+                JLabel exampleTitle = new JLabel(example.getTitle());
+                exampleTitle.setFont(new Font("Arial", Font.BOLD, 20));
+                exampleTitle.setForeground(Color.WHITE);
+                exampleTitle.setAlignmentX(Component.CENTER_ALIGNMENT);
+                exampleTitlePanel.add(exampleTitle);
+                exampleTitlePanel.add(Box.createVerticalStrut(5));
+                
+                JLabel exampleDesc = new JLabel("<html><div style='text-align: center;'>" + 
+                                              example.getDescription() + "</div></html>");
+                exampleDesc.setFont(new Font("Arial", Font.PLAIN, 14));
+                exampleDesc.setForeground(Color.WHITE);
+                exampleDesc.setAlignmentX(Component.CENTER_ALIGNMENT);
+                exampleTitlePanel.add(exampleDesc);
+                
+                sectionPanel.add(exampleTitlePanel);
+                
+                // Handle code blocks using CustomCodePanel
+                for (CodeBlock codeBlock : example.getCodeBlocks()) {
+                    sectionPanel.add(Box.createVerticalStrut(10));
+                    
+                    CustomCodePanel customCodePanel = new CustomCodePanel();
+                    String code = codeBlock.getCode();
+                    
+                    // Create line-by-line explanations map
+                    Map<Integer, String> explanations = new HashMap<>();
+                    String explanation = codeBlock.getExplanation();
+                    if (code != null && explanation != null) {
+                        String[] lines = code.split("\n");
+                        // Add explanation for each line
+                        for (int i = 0; i < lines.length; i++) {
+                            explanations.put(i + 1, explanation);
+                        }
+                    }
+                    
+                    customCodePanel.setContent(code, explanations);
+                    customCodePanel.setMaximumSize(new Dimension(FRAME_WIDTH - 100, 400));
+                    customCodePanel.setOpaque(false);
+                    
+                    sectionPanel.add(customCodePanel);
+                }
             }
+            
+            JScrollPane scrollPane = new JScrollPane(sectionPanel);
+            scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+            scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+            scrollPane.getVerticalScrollBar().setUnitIncrement(16);
+            scrollPane.setBorder(null);
+            scrollPane.setOpaque(false);
+            scrollPane.getViewport().setOpaque(false);
+            
+            tabbedPane.addTab(section.getTitle(), scrollPane);
         }
-        
-        // 创建滚动面板并设置策略
-        JScrollPane scrollPane = new JScrollPane(sectionPanel);
-        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        scrollPane.getVerticalScrollBar().setUnitIncrement(16);
-        scrollPane.setBorder(null);  // 移除滚动面板边框
-        
-        tabbedPane.addTab(section.getTitle(), scrollPane);
     }
-}
-
     
     private void createLayout() {
-        // 由于我们已经在主面板中设置了滚动条，这里直接添加主面板
         add(mainPanel);
-        // 设置窗口最小尺寸，以确保可以看到滚动条
         setMinimumSize(new Dimension(800, 600));
     }
-    
     
     private void returnToMainMenu() {
         dispose();

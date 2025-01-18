@@ -16,27 +16,26 @@ public class MainMenuScreen extends JFrame {
     private JButton assessmentButton;
     
     public MainMenuScreen() {
-        // 设置窗口基本属性
+        // basic settings of the window
         setTitle("F1 Array Racing - Learn Java Arrays");
         setSize(FRAME_WIDTH, FRAME_HEIGHT);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         
-        // 初始化组件
+        // Initialize components
         createComponents();
         
-        // 设置布局
+        // Set layout
         createLayout();
         
-        // 添加事件监听
+        // Add event listeners
         addEventListeners();
         
-        // 显示窗口
+        // Display the window
         setVisible(true);
     }
-    
-    private void createComponents() {
 
+    private void createComponents() {
         // Set background
         try {
             final Image backgroundImage = ImageIO.read(getClass().getResource("./resources/background1.jpg"));
@@ -54,48 +53,36 @@ public class MainMenuScreen extends JFrame {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
+    
         mainPanel = new JPanel();
-        mainPanel.setBackground(new Color(33, 33, 33)); // F1主题深色背景
+        mainPanel.setOpaque(false);  // Set to transparent
         
-        // 创建标题
+        // Create title label
         titleLabel = new JLabel("F1 Array Racing");
         titleLabel.setFont(new Font("Formula1", Font.BOLD, 36));
         titleLabel.setForeground(Color.WHITE);
         
-        // 创建按钮
+        // Create styled buttons
         conceptsButton = createStyledButton("Learn Concepts");
         activityButton = createStyledButton("Practice Activities");
         assessmentButton = createStyledButton("Take Assessment");
     }
     
-    private JButton createStyledButton(String text) {
-        JButton button = new JButton(text);
-        button.setPreferredSize(new Dimension(200, 50));
-        button.setFont(new Font("Arial", Font.BOLD, 16));
-        button.setBackground(new Color(220, 0, 0)); // F1红色
-        button.setForeground(Color.WHITE);
-        button.setFocusPainted(false);
-        button.setBorderPainted(false);
-        return button;
-    }
-    
     private void createLayout() {
-        // 使用垂直BoxLayout
+        // Use BoxLayout for main panel
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
         
-        // 创建标题面板
+        // Create title panel
         JPanel titlePanel = new JPanel();
-        titlePanel.setBackground(new Color(33, 33, 33));
+        titlePanel.setOpaque(false);  // Set as transparent
         titlePanel.add(titleLabel);
         
-        // 创建按钮面板
+        // Create button panel
         JPanel buttonPanel = new JPanel();
-        buttonPanel.setBackground(new Color(33, 33, 33));
+        buttonPanel.setOpaque(false);  // Set as transparent
         buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
         
-        // 添加间距
+        // Add components to button panel
         buttonPanel.add(Box.createVerticalStrut(50));
         buttonPanel.add(conceptsButton);
         buttonPanel.add(Box.createVerticalStrut(20));
@@ -103,19 +90,30 @@ public class MainMenuScreen extends JFrame {
         buttonPanel.add(Box.createVerticalStrut(20));
         buttonPanel.add(assessmentButton);
         
-        // 将组件添加到主面板
+        // Add components to main panel
         mainPanel.add(Box.createVerticalStrut(100));
         mainPanel.add(titlePanel);
         mainPanel.add(buttonPanel);
         
-        // 设置组件对齐
+        // Set alignment for components
         titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         conceptsButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         activityButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         assessmentButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         
-        // 添加主面板到窗口
+        // Add main panel to content pane
         add(mainPanel);
+    }
+    
+    private JButton createStyledButton(String text) {
+        JButton button = new JButton(text);
+        button.setPreferredSize(new Dimension(200, 50));
+        button.setFont(new Font("Arial", Font.BOLD, 16));
+        button.setBackground(new Color(220, 0, 0)); // F1 Red
+        button.setForeground(Color.WHITE);
+        button.setFocusPainted(false);
+        button.setBorderPainted(false);
+        return button;
     }
     
     private void addEventListeners() {
@@ -125,7 +123,7 @@ public class MainMenuScreen extends JFrame {
     }
     
     private void openConceptsScreen() {
-        dispose(); // 关闭当前窗口
+        dispose(); // Close current window
         new ConceptsScreen();
     }
     

@@ -1,8 +1,8 @@
 // CodeBlock.java
 public class CodeBlock {
-    private String fileName;    // 代码所属文件
-    private String code;        // 代码内容
-    private String explanation; // 对应的解释
+    private String fileName;    // The file that the code belongs to
+    private String code;        // Content of the coding block
+    private String explanation; // Explanation of the coding block
     
     // Getters and setters
     public String getFileName() { return fileName; }

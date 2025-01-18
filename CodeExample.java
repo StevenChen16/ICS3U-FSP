@@ -3,10 +3,10 @@ import java.util.List;
 import java.util.Map;
 
 public class CodeExample {
-    private String title;           // 示例标题
-    private String description;     // 示例描述
-    private List<CodeBlock> codeBlocks;  // 代码块列表
-    private Map<String, String> tooltips; // 悬浮提示映射
+    private String title;           // Example title
+    private String description;     // Example description
+    private List<CodeBlock> codeBlocks;  // List of code blocks
+    private Map<String, String> tooltips; // Map of tooltips
     
     // Getters and setters
     public String getTitle() { return title; }
