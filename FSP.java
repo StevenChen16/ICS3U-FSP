@@ -89,6 +89,14 @@
  *     - Animation smoothness depends on system capabilities
  *     - Resource loading may take longer on slower systems
  *     - Graphics rendering requires decent GPU performance
+ * 
+ *  Note: This project uses external libraries such as SLF4J and JSON. To compile and run the project,
+ *       make sure to include the required JAR files located in the 'lib' folder.
+ *       Compile the project using the following command:
+ *       javac -cp ".;./lib/*" FSP.java
+ *       Run the project using:
+ *       java -cp ".;./lib/*" FSP
+
  */
 
 public class FSP {
